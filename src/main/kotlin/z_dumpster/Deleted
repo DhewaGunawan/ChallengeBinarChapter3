@@ -1,0 +1,42 @@
+    /*=======================================================
+                      MAYBE ONE DAY NEEDED
+    ========================================================*/
+
+
+    /*
+        LOGIC TO MAKE FINAL RESULT
+    */
+
+//    fun finalResulting(inputMode: String) {
+//        println("============== RESULT ==============")
+//        println(player1)
+//        println(player2)
+//        println()
+//        println("Hasil :")
+//        try {
+//            var player: String ?= ""
+//            var opponent: String ?= ""
+//            when (inputMode) {
+//                "bot" -> {
+//                    player = "Kamu"
+//                    opponent = "Bot"
+//                }
+//                "player" -> {
+//                    player = "Pemain 1"
+//                    opponent = "Pemain 2"
+//                }
+//            }
+//            when {
+//                player1Answer == player2Answer -> println("Draw")
+//                player1Answer == "Gunting" && player2Answer == "Kertas" -> println("!! $player menang !!")
+//                player1Answer == "Gunting" && player2Answer == "Batu" -> println("!! $opponent menang !!")
+//                player1Answer == "Kertas" && player2Answer == "Gunting" -> println("!! $opponent menang !!")
+//                player1Answer == "Kertas" && player2Answer == "Batu" -> println("!! $player menang !!")
+//                player1Answer == "Batu" && player2Answer == "Gunting" -> println("!! $player menang !!")
+//                player1Answer == "Batu" && player2Answer == "Kertas" -> println("!! $opponent menang !!")
+//            }
+//            println()
+//        } catch (e: Exception) {
+//            println(e)
+//        }
+//    }

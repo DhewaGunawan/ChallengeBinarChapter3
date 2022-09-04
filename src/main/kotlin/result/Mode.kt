@@ -1,0 +1,4 @@
+package result
+
+class Mode {
+}

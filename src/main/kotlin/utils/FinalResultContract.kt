@@ -1,6 +1,6 @@
 package utils
 
-interface ProcessResultContract {
-    fun processResult(i: Int, inputUser: String)
-    fun processResultWithBot(inputUser: String)
+interface FinalResultContract {
+    fun finalResulting(isPlayingWithBot: Boolean, player1Answer: String, player2Answer: String)
+    fun finalResulting(player1Answer: String, player2Answer: String)
 }

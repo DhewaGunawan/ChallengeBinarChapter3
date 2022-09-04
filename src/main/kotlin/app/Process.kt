@@ -1,66 +1,86 @@
-import kotlin.concurrent.timer
+package app
+
+import result.Result
 
 class Process {
-    companion object {
-        var jawabanResult: String? = null
-        var pemain1: String? = null
-        var jwbPemain1: String? = null
-        var pemain2: String? = null
-        var jwbPemain2: String? = null
+    private var player1: String? = null
+    private var player1Answer: String? = null
+    private var player2: String? = null
+    private var player2Answer: String? = null
 
-        fun process1(jawaban: String): String {
-            var jawaban = jawaban
-            jawaban = if (jawaban.lowercase() == "a") {
-                "Gunting"
-            } else if (jawaban.lowercase() == "b") {
-                "Kertas"
-            } else if (jawaban.lowercase() == "c") {
-                "Batu"
-            } else {
-                "Ngawur"
-            }
-            jawabanResult = jawaban
-            return jawaban
+    /*=======================================================
+                       FLOW FROM BOT MODE
+    ========================================================*/
+    /* PROCESS TO GET BOT ANSWER WITH RANDOM PICK CHARACTER*/
+    fun getBotAnswer() {
+        val options = ('a'..'c').random()
+        when (options.toString()) {
+            "a" -> player2Answer = "Gunting"
+            "b" -> player2Answer = "Kertas"
+            "c" -> player2Answer = "Batu"
         }
+    }
 
-        fun process2(i: Int) {
-            if (i == 1) {
-                pemain1 = "Pemain " + i + " memilih : " + jawabanResult
-                jwbPemain1 = jawabanResult
-            } else {
-                pemain2 = "Pemain " + i + " memilih : " + jawabanResult
-                jwbPemain2 = jawabanResult
-            }
-        }
+    /* PROCESS TO COMPLETING FINAL RESULT PRINT */
+    fun processResultWithBot(inputUser: String) {
+        player1 = "Kamu memilih : $inputUser"
+        player1Answer = inputUser
+        player2 = "Bot memilih : $player2Answer"
+    }
 
-        fun process_final() {
-            println(pemain1)
-            println(pemain2)
-            println("")
-            println("Hasil :")
-            when {
-                jwbPemain1 == jwbPemain2 -> println("Draw")
-                jwbPemain1 == "Gunting" && jwbPemain2 == "Kertas" -> println("Pemain 1 menang")
-                jwbPemain1 == "Gunting" && jwbPemain2 == "Batu" -> println("Pemain 2 menang")
-                jwbPemain1 == "Kertas" && jwbPemain2 == "Gunting" -> println("Pemain 2 menang")
-                jwbPemain1 == "Kertas" && jwbPemain2 == "Batu" -> println("Pemain 1 menang")
-                jwbPemain1 == "Batu" && jwbPemain2 == "Gunting" -> println("Pemain 1 menang")
-                jwbPemain1 == "Batu" && jwbPemain2 == "kertas" -> println("Pemain 2 menang")
-                jwbPemain1 == "Ngawur" && jwbPemain2 != "Ngawur" -> println("Pemain 2 menang")
-                jwbPemain2 == "Ngawur" && jwbPemain1 != "Ngawur" -> println("Pemain 1 menang")
-            }
+    /*=======================================================
+                   FLOW FROM MULTIPLAYER MODE
+    ========================================================*/
+    /* PROCESS TO COMPLETING FINAL RESULT PRINT */
+    fun processResult(i: Int, inputUser: String) = when (i) {
+        1 -> {
+            player1 = "Pemain $i memilih : $inputUser"
+            player1Answer = inputUser
         }
+        else -> {
+            player2 = "Pemain $i memilih : $inputUser"
+            player2Answer = inputUser
+        }
+    }
 
-        fun process_playAgain(jawabanPA: String) {
-            if (jawabanPA.lowercase() == "y") {
-                println("Sedang memuat ulang..")
-                timer(initialDelay = 1000L, period = 1000L ) {
-                    System.out.flush()
-                    main()
-                }
-            } else {
-                println("Yahhh oke deh... bye byee")
-            }
-        }
+    /*=======================================================
+                FINAL RESULTING TO MAKE A CHOICE
+               WHAT WILL APP PRINT FOR THE RESULT
+    ========================================================*/
+    fun finalResulting(inputMode: String) {
+        val result = Result(
+            inputMode,
+            player1Answer.toString(),
+            player2Answer.toString()
+        )
+        result.mode(player1.toString(), player2.toString())
+    }
+
+    /*=======================================================
+                   DO SPACING FOR CLEARING AREA
+               BUT USER STILL CAN SEE GAME HISTORY
+    ========================================================*/
+    fun doSpacing() {
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
+        println()
     }
 }
